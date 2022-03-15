@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <com.eknow.imagetext.ImageTextView
+        android:id="@+id/itv_test"
+        android:layout_width="88dp"
+        android:layout_height="88dp"
+        android:background="@drawable/pad_shape_device_func_bg"
+        app:itv_imgRes="@drawable/pad_sel_dehumidifier_speed"
+        app:itv_imgSize="44dp"
+        app:itv_imgTintNormalColor="#8A8D94"
+        app:itv_imgTintSelectedColor="#00ECC9"
+        app:itv_imgTopMargin="8dp"
+        app:itv_maskBackgroundRes="@drawable/pad_shape_lock_bg_corner_15"
+        app:itv_maskCan="true"
+        app:itv_maskRes="@drawable/ic_lock"
+        app:itv_textHoldColor="#00ECC9"
+        app:itv_textLines="2"
+        app:itv_textNormalColor="#8A8D94"
+        app:itv_textStr="this is button and text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/itv_test">
+
+        <Button
+            android:id="@+id/btn1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="选中" />
+
+        <Button
+            android:id="@+id/btn2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="不选中" />
+
+        <Button
+            android:id="@+id/btn3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="可用" />
+
+        <Button
+            android:id="@+id/btn4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="不可用" />
+
+        <Button
+            android:id="@+id/btn5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="隐藏遮罩" />
+
+        <Button
+            android:id="@+id/btn6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="显示遮罩" />
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

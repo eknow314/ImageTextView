@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--上图片下文字控件-->
+    <declare-styleable name="ImageTextView">
+        <attr name="itv_imgRes" format="reference"/>
+        <attr name="itv_imgSize" format="dimension"/>
+        <attr name="itv_imgTintSelectedColor" format="color|reference"/>
+        <attr name="itv_imgTintNormalColor" format="color|reference"/>
+        <attr name="itv_imgTopMargin" format="dimension"/>
+        <attr name="itv_textSize" format="dimension"/>
+        <attr name="itv_textStr" format="string|reference"/>
+        <attr name="itv_textNormalColor" format="color|reference"/>
+        <attr name="itv_textHoldColor" format="color|reference"/>
+        <attr name="itv_textLines" format="integer"/>
+        <attr name="itv_textMaxLines" format="integer"/>
+        <attr name="itv_maskRes" format="reference"/>
+        <attr name="itv_maskBackgroundRes" format="reference"/>
+        <attr name="itv_maskCan" format="boolean"/>
+    </declare-styleable>
+</resources>
