@@ -128,6 +128,14 @@ class ImageTextView @JvmOverloads constructor(
         }
     }
 
+    /**
+     * 设置控件可用状态，但不显示遮罩
+     */
+    fun setEnabledNoMask(enabled: Boolean) {
+        super.setEnabled(enabled)
+        mImageView?.isEnabled = enabled
+    }
+
     private fun dp2px(dp: Float): Int {
         val scale = mContext.resources.displayMetrics.density
         return (dp * scale + 0.5f).toInt()
