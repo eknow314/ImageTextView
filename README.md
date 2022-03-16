@@ -22,6 +22,8 @@ dependencies {
 }
 ```
 
+### 基本用法
+
 ```text
 <com.eknow.imagetext.ImageTextView
         android:id="@+id/itv_test"
@@ -44,4 +46,22 @@ dependencies {
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
         
+```
+
+### 设置
+
+```text
+
+// 设置控件选中状态
+itvTest?.setEnabledNoMask(true)
+
+// 设置控件可用状态
+itvTest?.setEnabled(true)
+
+// 设置遮罩可用状态
+itvTest?.setMaskEnable(true)
+
+// 设置控件可用状态，但不显示遮罩
+itvTest?.setEnabledNoMask(true)
+
 ```
