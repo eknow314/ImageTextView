@@ -18,7 +18,7 @@ allprojects {
 
 ```groovy
 dependencies {
-    implementation 'com.github.eknow314:ImageTextView:1.0.2'
+    implementation 'com.github.eknow314:ImageTextView:1.0.3'
 }
 ```
 

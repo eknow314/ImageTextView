@@ -134,6 +134,7 @@ class ImageTextView @JvmOverloads constructor(
     fun setEnabledNoMask(enabled: Boolean) {
         super.setEnabled(enabled)
         mImageView?.isEnabled = enabled
+        mMaskView?.visibility = GONE
     }
 
     private fun dp2px(dp: Float): Int {

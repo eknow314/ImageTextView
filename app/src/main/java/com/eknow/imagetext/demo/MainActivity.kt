@@ -44,11 +44,9 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 itvTest?.isEnabled = false
             }
             R.id.btn5 -> {
-                itvTest?.isEnabled = true
                 itvTest?.setEnabledNoMask(false)
             }
             R.id.btn6 -> {
-                itvTest?.isEnabled = true
                 itvTest?.setMaskEnable(false)
             }
         }
