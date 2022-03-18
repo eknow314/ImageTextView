@@ -44,7 +44,10 @@ class ImageTextView @JvmOverloads constructor(
             // 图标选择颜色转变
             if (mImgTintSelectedColor != Color.TRANSPARENT && mImgTintNormalColor != Color.TRANSPARENT) {
                 imageTintList = ColorStateList(
-                    arrayOf(intArrayOf(android.R.attr.state_selected), intArrayOf(-android.R.attr.state_selected)),
+                    arrayOf(
+                        intArrayOf(android.R.attr.state_selected),
+                        intArrayOf(-android.R.attr.state_selected)
+                    ),
                     intArrayOf(mImgTintSelectedColor, mImgTintNormalColor)
                 )
             }
@@ -63,8 +66,8 @@ class ImageTextView @JvmOverloads constructor(
             id = generateViewId()
             setTextSize(TypedValue.COMPLEX_UNIT_PX, mTextSize)
             setTextColor(mTextNormalColor)
-            gravity = Gravity.CENTER_HORIZONTAL
-            textAlignment = TEXT_ALIGNMENT_CENTER
+            gravity = mTextGravity
+            textAlignment = TEXT_ALIGNMENT_GRAVITY
             text = if (mTextStr.isNullOrEmpty()) "" else mTextStr
             setLines(mTextLines)
             if (mTextMaxLines > mTextLines) {
@@ -76,6 +79,11 @@ class ImageTextView @JvmOverloads constructor(
             startToStart = parentId
             endToEnd = parentId
             bottomToBottom = parentId
+            if (mTextTopMargin != 0) {
+                topMargin = mTextTopMargin
+            }
+            marginStart = dp2px(2f)
+            marginEnd = dp2px(2f)
         })
 
         // 创建中间图片遮罩
@@ -194,6 +202,8 @@ class ImageTextView @JvmOverloads constructor(
     private var mTextHoldColor = Color.WHITE
     private var mTextLines: Int
     private var mTextMaxLines: Int
+    private var mTextGravity: Int
+    private var mTextTopMargin: Int
 
     private var mMaskRes: Int
     private var mMaskBackgroundRes: Int
@@ -202,20 +212,26 @@ class ImageTextView @JvmOverloads constructor(
     init {
         context.obtainStyledAttributes(attrs, R.styleable.ImageTextView).apply {
             mImgRes = getResourceId(R.styleable.ImageTextView_itv_imgRes, 0)
-            mImgSize = getDimensionPixelOffset(R.styleable.ImageTextView_itv_imgSize, dp2px(50f))
+            mImgSize = getDimensionPixelOffset(R.styleable.ImageTextView_itv_imgSize, dp2px(24f))
             mImgTintSelectedColor =
                 getColor(R.styleable.ImageTextView_itv_imgTintSelectedColor, Color.TRANSPARENT)
             mImgTintNormalColor =
                 getColor(R.styleable.ImageTextView_itv_imgTintNormalColor, Color.TRANSPARENT)
             mImgTopMargin = getDimensionPixelOffset(R.styleable.ImageTextView_itv_imgTopMargin, 0)
 
-            mTextSize = getDimension(R.styleable.ImageTextView_itv_textSize, sp2px(12f).toFloat())
+            mTextSize = getDimension(R.styleable.ImageTextView_itv_textSize, sp2px(14f).toFloat())
             mTextStr = getString(R.styleable.ImageTextView_itv_textStr)
             mTextNormalColor =
                 getColor(R.styleable.ImageTextView_itv_textNormalColor, mTextNormalColor)
             mTextHoldColor = getColor(R.styleable.ImageTextView_itv_textHoldColor, mTextHoldColor)
             mTextLines = getInteger(R.styleable.ImageTextView_itv_textLines, 1)
             mTextMaxLines = getInteger(R.styleable.ImageTextView_itv_textMaxLines, 1)
+            mTextGravity = when (getInt(R.styleable.ImageTextView_itv_textGravity, 0)) {
+                1 -> Gravity.CENTER_HORIZONTAL
+                2 -> Gravity.CENTER_VERTICAL
+                else -> Gravity.CENTER
+            }
+            mTextTopMargin = getDimensionPixelOffset(R.styleable.ImageTextView_itv_textTopMargin, 0)
 
             mMaskRes = getResourceId(R.styleable.ImageTextView_itv_maskRes, 0)
             mMaskBackgroundRes = getResourceId(R.styleable.ImageTextView_itv_maskBackgroundRes, 0)

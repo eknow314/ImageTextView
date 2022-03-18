@@ -2,19 +2,41 @@
 <resources>
     <!--上图片下文字控件-->
     <declare-styleable name="ImageTextView">
+        <!--图标资源文件-->
         <attr name="itv_imgRes" format="reference"/>
+        <!--图标大小，正方形的，默认 24-->
         <attr name="itv_imgSize" format="dimension"/>
+        <!--图标选中颜色，不设置就是资源文件的选中色-->
         <attr name="itv_imgTintSelectedColor" format="color|reference"/>
+        <!--图标未选中颜色-->
         <attr name="itv_imgTintNormalColor" format="color|reference"/>
+        <!--图标距离顶部高度-->
         <attr name="itv_imgTopMargin" format="dimension"/>
+        <!--文本大小，默认 14-->
         <attr name="itv_textSize" format="dimension"/>
+        <!--文本内容-->
         <attr name="itv_textStr" format="string|reference"/>
+        <!--文本常规颜色，默认 Color.DKGRAY-->
         <attr name="itv_textNormalColor" format="color|reference"/>
+        <!--文本高亮颜色，默认 Color.WHITE-->
         <attr name="itv_textHoldColor" format="color|reference"/>
+        <!--文本行数-->
         <attr name="itv_textLines" format="integer"/>
+        <!--文本最大行数，如果小于文本行数，则等于文本行数-->
         <attr name="itv_textMaxLines" format="integer"/>
+        <!--文本显示位置，默认文本框内居中-->
+        <attr name="itv_textGravity" format="enum">
+            <enum name="center" value="0"/>
+            <enum name="center_horizontal" value="1"/>
+            <enum name="center_vertical" value="2"/>
+        </attr>
+        <!--文本和图标之间的距离-->
+        <attr name="itv_textTopMargin" format="dimension"/>
+        <!--遮罩层图标-->
         <attr name="itv_maskRes" format="reference"/>
+        <!--遮罩层背景色-->
         <attr name="itv_maskBackgroundRes" format="reference"/>
+        <!--遮罩是否可用，默认不可用-->
         <attr name="itv_maskCan" format="boolean"/>
     </declare-styleable>
 </resources>
