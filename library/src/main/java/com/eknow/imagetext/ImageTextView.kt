@@ -159,35 +159,28 @@ class ImageTextView @JvmOverloads constructor(
         get() = mImgRes
         set(value) {
             mImgRes = value
-            invalidate()
-        }
-
-    var imgSize: Int
-        get() = mImgSize
-        set(value) {
-            mImgSize = value
-            invalidate()
+            mImageView?.setImageResource(value)
         }
 
     var textStr: String?
         get() = mTextStr
         set(value) {
             mTextStr = value
-            invalidate()
+            mTextView?.text = mTextStr
         }
 
     var maskRes: Int
         get() = mMaskRes
         set(value) {
             mMaskRes = value
-            invalidate()
+            mMaskView?.setImageResource(value)
         }
 
     var maskBackgroundRes: Int
         get() = mMaskBackgroundRes
         set(value) {
             mMaskBackgroundRes = value
-            invalidate()
+            mMaskView?.setBackgroundResource(value)
         }
 
     private var mImgRes: Int
