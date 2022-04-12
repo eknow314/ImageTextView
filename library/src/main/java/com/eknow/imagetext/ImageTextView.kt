@@ -148,16 +148,19 @@ class ImageTextView @JvmOverloads constructor(
                 maxLines = mTextMaxLines
             }
         }
-        addView(mTextView, LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT).apply {
+        addView(mTextView, LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT).apply {
             topToTop = parentId
             startToEnd = mImageView!!.id
             endToEnd = parentId
+            bottomToBottom = parentId
 
             if (mTextImgMargin != 0) {
                 marginStart = mTextImgMargin
             }
             topMargin = dp2px(2f)
             bottomMargin = dp2px(2f)
+            // 添加宽度约束
+            constrainedWidth = true
         })
 
         // 创建中间图片遮罩
