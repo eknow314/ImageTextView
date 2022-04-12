@@ -16,7 +16,7 @@ allprojects {
 
 ```groovy
 dependencies {
-    implementation 'com.github.eknow314:ImageTextView:1.0.4'
+    implementation 'com.github.eknow314:ImageTextView:1.0.6'
 }
 ```
 
@@ -64,6 +64,11 @@ dependencies {
 ```
 ### 全部属性
 ```text
+        <!--图标所在边-->
+        <attr name="itv_imgAt">
+            <enum name="left" value="0" />
+            <enum name="top" value="1" />
+        </attr>
         <!--图标资源文件-->
         <attr name="itv_imgRes" format="reference"/>
         <!--图标大小，正方形的，默认 24-->
@@ -94,6 +99,8 @@ dependencies {
         </attr>
         <!--文本和图标之间的距离-->
         <attr name="itv_textTopMargin" format="dimension"/>
+        <!--文本和图标之间的距离-->
+        <attr name="itv_textImgMargin" format="dimension"/>
         <!--遮罩层图标-->
         <attr name="itv_maskRes" format="reference"/>
         <!--遮罩层背景色-->

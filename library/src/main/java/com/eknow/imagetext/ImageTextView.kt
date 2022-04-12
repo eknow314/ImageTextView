@@ -35,6 +35,13 @@ class ImageTextView @JvmOverloads constructor(
         private set
 
     private fun createView() {
+        when (mImgAt) {
+            ImgAt.LEFT -> createViewLeft()
+            ImgAt.TOP -> createViewTop()
+        }
+    }
+
+    private fun createViewTop() {
         val parentId = this.id
         // 创建上部图片
         mImageView = AppCompatImageView(mContext).apply {
@@ -84,6 +91,73 @@ class ImageTextView @JvmOverloads constructor(
             }
             marginStart = dp2px(2f)
             marginEnd = dp2px(2f)
+        })
+
+        // 创建中间图片遮罩
+        if (mMaskCan) {
+            mMaskView = AppCompatImageView(mContext).apply {
+                setImageResource(mMaskRes)
+                setBackgroundResource(mMaskBackgroundRes)
+                scaleType = ImageView.ScaleType.CENTER_INSIDE
+                visibility = GONE
+            }
+            addView(
+                mMaskView,
+                LayoutParams(
+                    ViewGroup.LayoutParams.MATCH_PARENT,
+                    ViewGroup.LayoutParams.MATCH_PARENT
+                )
+            )
+        }
+    }
+
+    private fun createViewLeft() {
+        val parentId = this.id
+        // 创建左边图片
+        mImageView = AppCompatImageView(mContext).apply {
+            id = generateViewId()
+            setImageResource(mImgRes)
+            scaleType = ImageView.ScaleType.CENTER_INSIDE
+            // 图标选择颜色转变
+            if (mImgTintSelectedColor != Color.TRANSPARENT && mImgTintNormalColor != Color.TRANSPARENT) {
+                imageTintList = ColorStateList(
+                    arrayOf(
+                        intArrayOf(android.R.attr.state_selected),
+                        intArrayOf(-android.R.attr.state_selected)
+                    ),
+                    intArrayOf(mImgTintSelectedColor, mImgTintNormalColor)
+                )
+            }
+        }
+        addView(mImageView, LayoutParams(mImgSize, mImgSize).apply {
+            topToTop = parentId
+            startToStart = parentId
+            bottomToBottom = parentId
+        })
+
+        // 创建右边文字
+        mTextView = AppCompatCheckedTextView(mContext).apply {
+            id = generateViewId()
+            setTextSize(TypedValue.COMPLEX_UNIT_PX, mTextSize)
+            setTextColor(mTextNormalColor)
+            gravity = mTextGravity
+            textAlignment = TEXT_ALIGNMENT_GRAVITY
+            text = if (mTextStr.isNullOrEmpty()) "" else mTextStr
+            setLines(mTextLines)
+            if (mTextMaxLines > mTextLines) {
+                maxLines = mTextMaxLines
+            }
+        }
+        addView(mTextView, LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT).apply {
+            topToTop = parentId
+            startToEnd = mImageView!!.id
+            endToEnd = parentId
+
+            if (mTextImgMargin != 0) {
+                marginStart = mTextImgMargin
+            }
+            topMargin = dp2px(2f)
+            bottomMargin = dp2px(2f)
         })
 
         // 创建中间图片遮罩
@@ -183,6 +257,7 @@ class ImageTextView @JvmOverloads constructor(
             mMaskView?.setBackgroundResource(value)
         }
 
+    private var mImgAt: ImgAt
     private var mImgRes: Int
     private var mImgSize: Int
     private var mImgTintSelectedColor = Color.TRANSPARENT
@@ -197,6 +272,7 @@ class ImageTextView @JvmOverloads constructor(
     private var mTextMaxLines: Int
     private var mTextGravity: Int
     private var mTextTopMargin: Int
+    private var mTextImgMargin: Int
 
     private var mMaskRes: Int
     private var mMaskBackgroundRes: Int
@@ -204,6 +280,11 @@ class ImageTextView @JvmOverloads constructor(
 
     init {
         context.obtainStyledAttributes(attrs, R.styleable.ImageTextView).apply {
+            mImgAt = when (getInt(R.styleable.ImageTextView_itv_imgAt, 1)) {
+                0 -> ImgAt.LEFT
+                1 -> ImgAt.TOP
+                else -> ImgAt.TOP
+            }
             mImgRes = getResourceId(R.styleable.ImageTextView_itv_imgRes, 0)
             mImgSize = getDimensionPixelOffset(R.styleable.ImageTextView_itv_imgSize, dp2px(24f))
             mImgTintSelectedColor =
@@ -225,6 +306,7 @@ class ImageTextView @JvmOverloads constructor(
                 else -> Gravity.CENTER
             }
             mTextTopMargin = getDimensionPixelOffset(R.styleable.ImageTextView_itv_textTopMargin, 0)
+            mTextImgMargin = getDimensionPixelOffset(R.styleable.ImageTextView_itv_textImgMargin, 0)
 
             mMaskRes = getResourceId(R.styleable.ImageTextView_itv_maskRes, 0)
             mMaskBackgroundRes = getResourceId(R.styleable.ImageTextView_itv_maskBackgroundRes, 0)
@@ -233,4 +315,16 @@ class ImageTextView @JvmOverloads constructor(
         }
         createView()
     }
+
+    enum class ImgAt(var value: Int) {
+        LEFT(0),
+        TOP(1)
+    }
+
+    private fun getImgAtValue(type: ImgAt) = when (type) {
+        ImgAt.LEFT -> 0
+        ImgAt.TOP -> 1
+    }
+
+
 }

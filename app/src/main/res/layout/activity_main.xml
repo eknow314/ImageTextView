@@ -11,6 +11,7 @@
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:background="@drawable/pad_shape_device_func_bg"
+        app:itv_imgAt="top"
         app:itv_imgRes="@drawable/ic_icon_mode"
         app:itv_imgSize="24dp"
         app:itv_imgTintNormalColor="#8A8D94"
@@ -29,6 +30,33 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <com.eknow.imagetext.ImageTextView
+        android:id="@+id/itv_test_left"
+        android:layout_width="110dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:background="#161B2A"
+        android:paddingStart="8dp"
+        android:paddingEnd="1dp"
+        app:itv_imgAt="left"
+        app:itv_imgRes="@drawable/ic_icon_mode"
+        app:itv_imgSize="16dp"
+        app:itv_imgTintNormalColor="#8A8D94"
+        app:itv_imgTintSelectedColor="#00ECC9"
+        app:itv_maskBackgroundRes="@drawable/pad_shape_lock_bg_corner_15"
+        app:itv_maskCan="false"
+        app:itv_maskRes="@drawable/ic_lock"
+        app:itv_textGravity="center_vertical"
+        app:itv_textHoldColor="#00ECC9"
+        app:itv_textLines="2"
+        app:itv_textNormalColor="#8A8D94"
+        app:itv_textSize="12sp"
+        app:itv_textStr="this is button this is button"
+        app:itv_textImgMargin="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/itv_test" />
 
 
     <LinearLayout
